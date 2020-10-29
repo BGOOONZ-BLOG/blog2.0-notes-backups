@@ -1,0 +1,251 @@
+/* ------------------------------------------------------------------
+Project: Semantic
+Place here your custom CSS styles
+------------------------------------------------------------------ */
+#main-slider-items-box {
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.work-item-slide .work-image {
+    -webkit-backface-visibility: hidden;
+}
+
+#main-slider-items-box .work-item:hover {
+    opacity: 1;
+}
+
+#main-slider-items-box .works-grid.works-grid-gut .work-item {
+    padding: 2vmax;
+}
+
+#main-slider-items-box .works-grid.works-hover-w .work-item:hover .work-image:after {
+    background: rgba(255, 255, 255, .5);
+}
+
+#main-slider-items-box .work-item:hover .work-image > img {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+#main-slider-items-box .work-item .work-caption {
+    bottom: 50%;
+    opacity: 1;
+    z-index: 3;
+    -webkit-transform: translateY(45%);
+    -moz-transform: translateY(45%);
+    transform: translateY(45%);
+}
+
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.videoInsert {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vw;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    overflow: hidden;
+}
+
+#home video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+.work-item-slide {
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+    opacity: 0.92;
+}
+
+.navbar-brand {
+    background-image: url("../../images/logo-black.png");
+}
+
+/*@media (max-width: 767px) {*/
+/*.navbar-transparent .nav li > a, .navbar-transparent .navbar-brand {*/
+/*color: black;*/
+/*}*/
+/*}*/
+
+.navbar-transparent .navbar-brand {
+    background-image: url("../../images/logo.png");
+}
+
+@media (max-width: 768px) {
+    .navbar-transparent .navbar-brand {
+        background-image: url("../../images/logo-black.png");
+    }
+
+    .navbar-brand {
+        margin-left: 15px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .module-title {
+        font-size: 8vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .module-title-xs {
+        font-size: 5vw;
+    }
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
+}
+
+canvas.emscripten {
+    cursor: hand;
+    border-width: 0px;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+#canvas {
+    cursor: hand;
+}
+
+@media (pointer: coarse) {
+    #works-grid .work-item .work-caption {
+        bottom: 50%;
+        opacity: 1;
+        z-index: 3;
+        -webkit-transform: translateY(50%);
+        -moz-transform: translateY(50%);
+        transform: translateY(50%);
+    }
+
+    #works-grid .work-image:after {
+        background: rgba(255, 255, 255, 0.6);
+        opacity: 1;
+    }
+}
+
+.promo-text {
+    font-size: 12pt;
+}
+
+.bg-black {
+    background-color: black;
+    color: white;
+}
+
+.bg-black .btn-border-d {
+    border: 1px solid white;
+    color: white;
+}
+
+.bg-black .btn-border-d:hover {
+    border: 1px solid #DDD;
+    color: #DDD;
+}
+
+#interact-with-us:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+
+}
+
+.animated-image-container .animated-image {
+    opacity: 0.65;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    transition: opacity 0.3s, filter 0.1s, -webkit-filter 0.1s;
+}
+
+.animated-image-container:hover .animated-image {
+    opacity: 1;
+    -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(0%);
+    transition: opacity 0.3s, filter 0.1s, -webkit-filter 0.1s;
+}
+
+.bg-interactive:hover {
+    background-color: #999;
+    transition: background-color 0.3s;
+}
+
+.bg-interactive {
+    background-color: #EEE;
+    color: black;
+    transition: background-color 0.5s, color 0.2s;
+}
+
+.bg-interactive:hover {
+    /*cursor: pointer;*/
+    background-color: #888;
+    color: white;
+    transition: background-color 0.5s, color 0.2s;
+}
+
+.bg-interactive:hover .btn-border-d {
+    /*cursor: pointer;*/
+    border: 1px solid white;
+    color: white;
+    transition: background-color 0.5s, color 0.2s;
+}
+
+@media print {
+
+    @page {
+        size: A0;
+        margin: 0mm;
+        /*orie*/
+    }
+
+    html, body {
+        width: 1920px;
+    }
+}
+
+#left-support {
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+
+#right-support {
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+
+@media (min-width: 992px) {
+    #left-support {
+        border-right: solid 1px #888888;
+    }
+}
