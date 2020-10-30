@@ -1,30 +1,74 @@
 /*style.css*/
 
 body {
-  background-color:#87878700;
+  background-color: #93b7be;
 }
 
-.section{
-  background-color: #a2a1a18e;
+.section {
+  background-color: #f1fffa;
   border-radius: 1pc;
   width: 80%;
   margin: auto;
   padding: 10px;
   position: relative;
-  margin-bottom:20px;
+  margin-bottom: 30px;
 }
 
-.sub-section{
-  background-color: #a2a1a1ea;
+.sub-section {
+  background-color: #22aaa1;
   border-radius: 1pc;
-  width:85%;
+  width: 85%;
   margin: auto;
   padding: 10px;
   position: relative;
-  margin-bottom:20px;
-
+  margin-bottom: 20px;
 }
-.image{
-  width:85%;
-text-align: center;
+
+.inner-sub-section {
+  background-color: #f2f3f4;
+  border-radius: 1pc;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 85%;
+}
+
+.image-box {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 500%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 250%;
+}
+
+h3 {
+  text-align: center;
+  font-size: 200%;
+}
+
+ul {
+  background-color: #74d5dd;
+  border-radius: 1pc;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+li {
+  list-style-position: inside;
 }
