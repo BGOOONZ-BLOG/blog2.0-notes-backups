@@ -9,3 +9,4 @@
   - image: for images
   - quote: for blockqoutes
   - code-block:
+  - image-box: div to contain images
