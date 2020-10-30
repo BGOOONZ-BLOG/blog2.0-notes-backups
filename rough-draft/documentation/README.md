@@ -6,3 +6,6 @@
   - major-point: Top level list item
   - minor-point: Second level lists item
   - sub-minor-point: Third level list item
+  - image: for images
+  - quote: for blockqoutes
+  - code-block:
