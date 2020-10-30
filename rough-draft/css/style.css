@@ -1,0 +1,30 @@
+/*style.css*/
+
+body {
+  background-color:#87878700;
+}
+
+.section{
+  background-color: #a2a1a18e;
+  border-radius: 1pc;
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  margin-bottom:20px;
+}
+
+.sub-section{
+  background-color: #a2a1a1ea;
+  border-radius: 1pc;
+  width:85%;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  margin-bottom:20px;
+
+}
+.image{
+  width:85%;
+text-align: center;
+}
