@@ -1,3 +1,7 @@
+body {
+  margin: auto;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -10,8 +14,9 @@ th {
   padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.container {
+  margin: auto;
+  background-color: grey;
 }
 
 .question {
@@ -22,6 +27,12 @@ tr:nth-child(even) {
   padding: 10px;
   position: relative;
   margin-bottom: 25px;
+}
+
+.answer {
+  overflow-wrap: normal;
+  margin: auto;
+  width: 400px;
 }
 
 code pre {
