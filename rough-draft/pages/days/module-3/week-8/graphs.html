@@ -179,36 +179,82 @@
     <div id="ways-to-reference" class="section">
       <h2>Ways to Reference Graph Nodes</h2>
 
-      <div id="node-class-reference" class="sub-section">
-        <h3>With a Node Class</h3>
-        <h4>
-          Uses a class to construct a node and define the neighbors as
-          properties of each node.
-        </h4>
+        <div id="node-class-reference" class="sub-section">
+            <h3>With a Node Class</h3>
+            <p>Uses a class to construct a node and define the neighbors as properties of each node.</p>
 
-        <div id="graph-node-example" class="code-block">
-          <pre>
-                        <code>
-                        
-                        class GraphNode {
-                        constructor(val) {
-                        this.val = val;
-                        this.neighbors = [];
-                        }
-                        }
-                        let a = new GraphNode("a");
-                        let b = new GraphNode("b");
-                        let c = new GraphNode("c");
-                        let d = new GraphNode("d");
-                        let e = new GraphNode("e");
-                        let f = new GraphNode("f");
-                        a.neighbors = [e, c, b];
-                        c.neighbors = [b, d];
-                        e.neighbors = [a];
-                        f.neighbors = [e];
-                            
-                        </code>
-                    </pre>
+            <div id="graph-node-example" class="code-block">
+                <pre>
+                    <code>
+                    class GraphNode {
+                    constructor(val) {
+                    this.val = val;
+                    this.neighbors = [];
+                    }
+                    }
+                    let a = new GraphNode("a");
+                    let b = new GraphNode("b");
+                    let c = new GraphNode("c");
+                    let d = new GraphNode("d");
+                    let e = new GraphNode("e");
+                    let f = new GraphNode("f");
+                    a.neighbors = [e, c, b];
+                    c.neighbors = [b, d];
+                    e.neighbors = [a];
+                    f.neighbors = [e];
+
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div id="matrix-reference" class="sub-section">
+            <h3>With an Adjacency Matrix</h3>
+            <ul id="matrix-list">
+                <li class="major-point">
+                    The row index will corespond to the source of an edge and the column
+                    index will correspond to the edges destination.
+                </li>
+                <li class="major-point">
+                    When the edges have a direction, `matrix[i][j]` may not be the same
+                    as `matrix[j][i]`
+                </li>
+                <li class="major-point">
+                    It is common to say that a node is adjacent to itself so
+                    `matrix[x][x]` is true for any node
+                </li>
+                <li class="major-point">Will be O(n^2) space complexity</li>
+            </ul>
+
+            <div class="image-box"><img id="matrix-img" class="image" src="./Images/adjacency-matrix.png"
+                    alt="Matrix Image" /></div>
+        </div>
+
+        <div id="list-reference" class="sub-section">
+            <h3>With an Adjacency List</h3>
+            <p>
+                Seeks to solve the shortcomings of the matrix implementation. It uses
+                an object where keys represent node labels and values associated with
+                that key are the adjacent node keys held in an array.
+            </p>
+
+            <div id="graph-node-example" class="code-block">
+                <pre>
+                    <code>
+                        let graph = {
+                            a: ["b", "c", "e"],
+                            b: [],
+                            c: ["b", "d"],
+                            d: [],
+                            e: ["a"],
+                            f: ["e"],
+                          };
+
+                    </code>
+                </pre>
+            </div>
+
+            <div id="list-example" class="code-block"></div>
         </div>
       </div>
 
@@ -258,65 +304,74 @@
         <div id="basic-graph-example" class="code-block">
           <pre>
                         <code>
-                        
-                    class Graph {
-  constructor() {
-    this.adjList = {};
-  }
-  addVertex(vertex) {
-    if (!this.adjList[vertex]) this.adjList[vertex] = [];
-  }
-  addEdges(srcValue, destValue) {
-    this.addVertex(srcValue);
-    this.addVertex(destValue);
-    this.adjList[srcValue].push(destValue);
-    this.adjList[destValue].push(srcValue);
-  }
-  buildGraph(edges) {
-    edges.forEach((ele) => {
-      this.addEdges(ele[0], ele[1]);
-    });
-    return this.adjList;
-  }
-  breadthFirstTraversal(startingVertex) {
-    const queue = [startingVertex];
-    const visited = new Set();
-    const result = new Array();
-    while (queue.length) {
-      const value = queue.shift();
-      if (visited.has(value)) continue;
-      result.push(value);
-      visited.add(value);
-      queue.push(...this.adjList[value]);
-    }
-    return result;
-  }
-  depthFirstTraversalIterative(startingVertex) {
-    const stack = [startingVertex];
-    const visited = new Set();
-    const result = new Array();
-    while (stack.length) {
-      const value = stack.pop();
-      if (visited.has(value)) continue;
-      result.push(value);
-      visited.add(value);
-      stack.push(...this.adjList[value]);
-    }
-    return result;
-  }
-  depthFirstTraversalRecursive(
-    startingVertex,
-    visited = new Set(),
-    vertices = []
-  ) {
-    if (visited.has(startingVertex)) return [];
-    vertices.push(startingVertex);
-    visited.add(startingVertex);
-    this.adjList[startingVertex].forEach((vertex) => {
-      this.depthFirstTraversalRecursive(vertex, visited, vertices);
-    });
-    return [...vertices];
-  }
+                            class Graph {
+                                constructor() {
+                                  this.adjList = {};
+                                }
+
+                                addVertex(vertex) {
+                                  if (!this.adjList[vertex]) this.adjList[vertex] = [];
+                                }
+
+                                addEdges(srcValue, destValue) {
+                                  this.addVertex(srcValue);
+                                  this.addVertex(destValue);
+                                  this.adjList[srcValue].push(destValue);
+                                  this.adjList[destValue].push(srcValue);
+                                }
+
+                                buildGraph(edges) {
+                                  edges.forEach((ele) => {
+                                    this.addEdges(ele[0], ele[1]);
+                                  });
+                                  return this.adjList;
+                                }
+
+                                breadthFirstTraversal(startingVertex) {
+                                  const queue = [startingVertex];
+                                  const visited = new Set();
+                                  const result = new Array();
+
+                                  while (queue.length) {
+                                    const value = queue.shift();
+                                    if (visited.has(value)) continue;
+                                    result.push(value);
+                                    visited.add(value);
+                                    queue.push(...this.adjList[value]);
+                                  }
+                                  return result;
+                                }
+
+                                depthFirstTraversalIterative(startingVertex) {
+                                  const stack = [startingVertex];
+                                  const visited = new Set();
+                                  const result = new Array();
+
+                                  while (stack.length) {
+                                    const value = stack.pop();
+                                    if (visited.has(value)) continue;
+                                    result.push(value);
+                                    visited.add(value);
+                                    stack.push(...this.adjList[value]);
+                                  }
+                                  return result;
+                                }
+
+                                depthFirstTraversalRecursive(
+                                  startingVertex,
+                                  visited = new Set(),
+                                  vertices = []
+                                ) {
+                                  if (visited.has(startingVertex)) return [];
+
+                                  vertices.push(startingVertex);
+                                  visited.add(startingVertex);
+
+                                  this.adjList[startingVertex].forEach((vertex) => {
+                                    this.depthFirstTraversalRecursive(vertex, visited, vertices);
+                                  });
+                                  return [...vertices];
+                                }
 
      
                         </code>
@@ -329,6 +384,7 @@
         <div id="using-a-node-class" class="code-block">
           <pre>
                         <code>
+<<<<<<< HEAD
                         
            class GraphNode {
   constructor(val) {
@@ -372,6 +428,55 @@ function maxValue(node, visited = new Set()) {
   return maxValue;
     }
                             
+=======
+
+                            class GraphNode {
+                                constructor(val) {
+                                  this.val = val;
+                                  this.neighbors = [];
+                                }
+                              }
+
+                              function breadthFirstSearch(startingNode, targetVal) {
+                                const queue = [startingNode];
+                                const visited = new Set();
+
+                                while (queue.length) {
+                                  const node = queue.shift();
+                                  if (visited.has(node.val)) continue;
+                                  visited.add(node.val);
+                                  if (node.val === targetVal) return node;
+                                  node.neighbors.forEach((ele) => queue.push(ele));
+                                }
+                                return null;
+                              }
+
+                              function numRegions(graph) {
+                                let maxLength = 0;
+                                for (node in graph) {
+                                  if (graph[node].length > maxLength) maxLength = graph[node].length;
+                                }
+                                if (maxLength === 0) {
+                                  return (length = Object.keys(graph).length);
+                                } else {
+                                  return maxLength;
+                                }
+                              }
+
+                              function maxValue(node, visited = new Set()) {
+                                let queue = [node];
+                                let maxValue = 0;
+                                while (queue.length) {
+                                  let currentNode = queue.shift();
+                                  if (visited.has(currentNode.val)) continue;
+                                  visited.add(currentNode.val);
+                                  if (currentNode.val > maxValue) maxValue = currentNode.val;
+                                  currentNode.neighbors.forEach((ele) => queue.push(ele));
+                                }
+                                return maxValue;
+                              }
+
+>>>>>>> 9bf1b2b4ceb8b49a4c44647510b51102e1d544df
                         </code>
                     </pre>
         </div>
@@ -385,25 +490,32 @@ function maxValue(node, visited = new Set()) {
           <div id="traversal-node-class" class="code-block">
             <pre>
                         <code>
-                  function depthFirstRecur(node, visited = new Set()) {
-  if (visited.has(node.val)) return;
-  console.log(node.val);
-  visited.add(node.val);
-  node.neighbors.forEach((neighbor) => {
-    depthFirstRecur(neighbor, visited);
-  });
-}
-function depthFirstIter(node) {
-  let visited = new Set();
-  let stack = [node];
-  while (stack.length) {
-    let node = stack.pop();
-    if (visited.has(node.val)) continue;
-    console.log(node.val);
-    visited.add(node.val);
-    stack.push(...node.neighbors);
-  }
-}
+                            function depthFirstRecur(node, visited = new Set()) {
+                                if (visited.has(node.val)) return;
+
+                                console.log(node.val);
+                                visited.add(node.val);
+
+                                node.neighbors.forEach((neighbor) => {
+                                  depthFirstRecur(neighbor, visited);
+                                });
+                              }
+
+                              function depthFirstIter(node) {
+                                let visited = new Set();
+                                let stack = [node];
+
+                                while (stack.length) {
+                                  let node = stack.pop();
+
+                                  if (visited.has(node.val)) continue;
+
+                                  console.log(node.val);
+                                  visited.add(node.val);
+
+                                  stack.push(...node.neighbors);
+                                }
+                              }
                         </code>
                     </pre>
           </div>
@@ -415,20 +527,24 @@ function depthFirstIter(node) {
           <div id="adjacency-traversal-list" class="code-block">
             <pre>
                         <code>
-                  function depthFirst(graph) {
-  let visited = new Set();
-  for (let node in graph) {
-    _depthFirstRecur(node, graph, visited);
-  }
-}
-function _depthFirstRecur(node, graph, visited) {
-  if (visited.has(node)) return;
-  console.log(node);
-  visited.add(node);
-  graph[node].forEach((neighbor) => {
-    _depthFirstRecur(neighbor, graph, visited);
-  });
-    }
+                            function depthFirst(graph) {
+                                let visited = new Set();
+
+                                for (let node in graph) {
+                                  _depthFirstRecur(node, graph, visited);
+                                }
+                              }
+
+                              function _depthFirstRecur(node, graph, visited) {
+                                if (visited.has(node)) return;
+
+                                console.log(node);
+                                visited.add(node);
+
+                                graph[node].forEach((neighbor) => {
+                                  _depthFirstRecur(neighbor, graph, visited);
+                                });
+                              }
                         </code>
                     </pre>
           </div>
