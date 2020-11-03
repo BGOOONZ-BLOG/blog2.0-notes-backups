@@ -384,51 +384,6 @@
         <div id="using-a-node-class" class="code-block">
           <pre>
                         <code>
-<<<<<<< HEAD
-                        
-           class GraphNode {
-  constructor(val) {
-    this.val = val;
-    this.neighbors = [];
-  }
-}
-function breadthFirstSearch(startingNode, targetVal) {
-  const queue = [startingNode];
-  const visited = new Set();
-  while (queue.length) {
-    const node = queue.shift();
-    if (visited.has(node.val)) continue;
-    visited.add(node.val);
-    if (node.val === targetVal) return node;
-    node.neighbors.forEach((ele) => queue.push(ele));
-  }
-  return null;
-}
-function numRegions(graph) {
-  let maxLength = 0;
-  for (node in graph) {
-    if (graph[node].length > maxLength) maxLength = graph[node].length;
-  }
-  if (maxLength === 0) {
-    return (length = Object.keys(graph).length);
-  } else {
-    return maxLength;
-  }
-}
-function maxValue(node, visited = new Set()) {
-  let queue = [node];
-  let maxValue = 0;
-  while (queue.length) {
-    let currentNode = queue.shift();
-    if (visited.has(currentNode.val)) continue;
-    visited.add(currentNode.val);
-    if (currentNode.val > maxValue) maxValue = currentNode.val;
-    currentNode.neighbors.forEach((ele) => queue.push(ele));
-  }
-  return maxValue;
-    }
-                            
-=======
 
                             class GraphNode {
                                 constructor(val) {
@@ -476,7 +431,6 @@ function maxValue(node, visited = new Set()) {
                                 return maxValue;
                               }
 
->>>>>>> 9bf1b2b4ceb8b49a4c44647510b51102e1d544df
                         </code>
                     </pre>
         </div>

@@ -1,35 +1,20 @@
 const gotIt = [];
-let isTablet = false;
+let isHidden = false;
 function reset() {
-    let hidden;
-    if (isTablet) {
-        hidden = sessionStorage.getItem("gotIt");
-    } else {
-        hidden = localStorage.getItem("gotIt");
-    }
-    if (hidden) {
-        let hiddenElts = JSON.parse(hidden);
-        for (let i = 0; i < hiddenElts.length; i++) {
-            let elt = document.getElementById(hiddenElts[i]);
-            elt.style.display = "block";
-        }
-        if (isTablet) {
-            sessionStorage.removeItem("gotIt");
-        } else {
-            localStorage.removeItem("gotIt");
-        }
+    if (isHidden === true) {
+        isHidden = false;
     }
 }
 function hideAnswers() {
-    let elList = document.getElementsByClassName("answer");
-    for (i = 0; i < elList.length; i++) {
-        elList[i].style.display = "none";
+    let answerList = document.getElementsByClassName("answer");
+    for (i = 0; i < answerList.length; i++) {
+        answerList[i].style.display = "none";
     }
 }
 function showAnswers() {
-    let elList = document.getElementsByClassName("answer");
-    for (i = 0; i < elList.length; i++) {
-        elList[i].style.display = "block";
+    let answerList = document.getElementsByClassName("answer");
+    for (i = 0; i < answerList.length; i++) {
+        answerList[i].style.display = "block";
     }
 }
 function hideQuestion() {
@@ -39,7 +24,7 @@ function hideQuestion() {
 }
 function showQuestions() {
     let hidden;
-    if (isTablet) {
+    if (isHidden) {
         hidden = sessionStorage.getItem("gotIt");
     } else {
         hidden = localStorage.getItem("gotIt");
@@ -75,11 +60,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
             myQuiz.style.display = "inline-block";
         }
     });
-    const userAgent = navigator.userAgent.toLowerCase();
-    isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(
-        userAgent
-    );
-    //console.log(isTablet)
+
+    console.log(isHidden);
     let resetBtn = document.getElementById("resetButton");
     resetBtn.addEventListener("click", reset);
     hideAnswers();
