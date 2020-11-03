@@ -1,9 +1,9 @@
 body {
-  background-color: #64ddb1;
+  background-color: #333745;
 }
 
 .section {
-  background-color: #f1fffa;
+  background-color: #ca274b;
   border-radius: 1pc;
   width: 90%;
   margin: auto;
@@ -14,7 +14,7 @@ body {
 }
 
 .sub-section {
-  background-color: #4dc0b8;
+  background-color: #eef5db;
   border-radius: 1pc;
   width: 85%;
   margin: auto;
@@ -26,7 +26,7 @@ body {
 }
 
 .inner-sub-section {
-  background-color: #f2f3f4;
+  background-color: #333745;
   border-radius: 1pc;
   width: 90%;
   margin: auto;
@@ -51,8 +51,7 @@ body {
 h1 {
   text-align: center;
   font-size: 500%;
-  background-color: #1ba79d;
-  background-color: ;
+  background-color: #ca274b;
   border-radius: 1pc;
   width: 90%;
   margin: auto;
@@ -65,7 +64,7 @@ h1 {
 h2 {
   text-align: center;
   font-size: 250%;
-  background-color: #1ba79d;
+  background-color: #ca274b;
   border-radius: 1pc;
   width: 85%;
   margin: auto;
@@ -77,6 +76,7 @@ h2 {
 }
 
 h3 {
+  color: white;
   text-align: center;
   font-size: 200%;
 }
