@@ -1,4 +1,3 @@
-const gotIt = [];
 let isHidden = false;
 function reset() {
     if (isHidden === true) {
@@ -18,72 +17,52 @@ function showAnswers() {
     }
 }
 function hideQuestion() {
-    //console.log(event.target.id);
+    console.log(event.target.id);
     let question = document.getElementById(event.target.id);
     question.style.display = "none";
 }
 function showQuestions() {
     let hidden;
-    if (isHidden) {
-        hidden = sessionStorage.getItem("gotIt");
-    } else {
-        hidden = localStorage.getItem("gotIt");
-    }
     if (hidden != null) {
         hiddenQuestionsArr = JSON.parse(hidden);
-        //console.log("HiddenQuestions:  ", hiddenQuestionsArr);
+        // console.log("hidden: ", hidden);
+        // console.log("HiddenQuestions:  ", hiddenQuestionsArr);
         for (let i = 0; i < hiddenQuestionsArr.length; i++) {
             let question = document.getElementById(hiddenQuestionsArr[i]);
-            //console.log("Setting ", hiddenQuestionsArr[i], " to display=none");
+            console.log("Setting ", hiddenQuestionsArr[i], " to display=none");
             question.style.display = "none";
         }
     }
 }
 window.addEventListener("DOMContentLoaded", (event) => {
     let quizBtn = document.getElementsByClassName("quizNbr")[0];
-    //console.log("Quiz btn:  ", quizBtn.id);
-    if (localStorage.getItem(quizBtn.id)) {
-        quizBtn.style.display = "none";
-        let quiz = document.getElementById("quiz");
-        quiz.style.display = "inline-block";
-    }
-    //quizBtn.style.display = "inline-block";
-    quizBtn.addEventListener("click", (event) => {
-        quiz = event.target.id;
-        if (localStorage.getItem(quiz) === null) {
-            let thisQuizNbr = parseInt(quiz.slice(4));
-            cleanLocalStorage(thisQuizNbr);
-            reset();
-            localStorage.setItem(quiz, "started");
-            quizBtn.style.display = "none";
-            let myQuiz = document.getElementById("quiz");
-            myQuiz.style.display = "inline-block";
-        }
-    });
-
-    console.log(isHidden);
-    let resetBtn = document.getElementById("resetButton");
-    resetBtn.addEventListener("click", reset);
+    console.log("Quiz btn:  ", quizBtn.id);
+    let quiz = document.getElementById("quiz");
+    quiz.style.display = "inline-block";
     hideAnswers();
     showQuestions();
     function addEventListeners() {
         let hideQuestions = document.getElementsByClassName("hideButtonClass");
         for (let i = 0; i < hideQuestions.length; i++) {
             hideQuestions[i].addEventListener("click", (event) => {
-                //console.log("Target id:  ", event.target.id);
+                console.log("Target id:  ", event.target.id);
                 let parentID = event.target.parentElement.id;
+                /*                
+The parentElement property returns the parent element of the specified element.
+The difference between parentElement and parentNode, is that parentElement returns null if the parent node is not an element node
+*/
+
                 parentDiv = document.getElementById(parentID);
                 parentDiv.style.display = "none";
-                gotIt.push(parentID);
-                localStorage.setItem("gotIt", JSON.stringify(gotIt));
             });
         }
         let myQuestions = document.getElementsByClassName("buttonClass");
         for (let i = 0; i < myQuestions.length; i++) {
             myQuestions[i].addEventListener("click", (event) => {
-                answerDiv = event.target.parentElement.getElementsByClassName(
+                let answerDiv = event.target.parentElement.getElementsByClassName(
                     "answer"
                 )[0];
+                console.log(" answerDiv: ", answerDiv);
                 if (
                     answerDiv !== undefined &&
                     answerDiv.style.display === "none"
@@ -99,10 +78,3 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
     addEventListeners();
 });
-function cleanLocalStorage(currQuizNbr) {
-    for (let i = 1; i < currQuizNbr; i++) {
-        let lastQuizId = "quiz" + i;
-        console.log("removing ", lastQuizId, " from local storage...");
-        localStorage.removeItem(lastQuizId);
-    }
-}
