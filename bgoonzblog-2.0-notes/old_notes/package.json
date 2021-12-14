@@ -25,7 +25,7 @@
         "documentation": "^13.2.5",
         "fs-extra": "7.0.1",
         "gatsby": "2.32.8",
-        "gatsby-plugin-algolia": "^0.22.0",
+        "gatsby-plugin-algolia": "0.25.0",
         "gatsby-plugin-dark-mode": "^1.1.2",
         "gatsby-plugin-google-tagmanager": "^3.7.1",
         "gatsby-plugin-react-helmet": "3.3.3",
